@@ -8,7 +8,7 @@ In this repository, we designed a distributed file system that is tolerant to up
 # Usage
 Make sure you have valid API keys for both OpenAI and NewsAPI. Run the script and follow the prompts to enter your specific research question. If the agent is able to summarize an answer to your question, it will print the summary as the 'Final Answer', else it will print 'No relevant news articles found'.
 
-## Examples
+# Examples
     Query: What are recent advances in the field of artificial intelligence?
     Agent Response: Recent advances in the field of artificial intelligence include the development of natural language processing systems, machine learning algorithms, and autonomous robots.
     
