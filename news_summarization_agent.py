@@ -17,10 +17,10 @@ from newsapi import NewsApiClient
 from transformers import pipeline
 
 # Set up the OpenAI API
-openai.api_key = "YOUR_OPENAI_API_KEY"  # Replace with your OpenAI API key
+openai.api_key = "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"  # Replace with your OpenAI API key
 
 # Set up the NewsAPI client
-newsapi = NewsApiClient(api_key="YOUR_NEWSAPI_API_KEY")  # Replace with your NewsAPI API key
+newsapi = NewsApiClient(api_key="638e4e06d3484052a3776faa953e2e3f")  # Replace with your NewsAPI API key
 
 def getAnswer(prompt):
     """
@@ -70,8 +70,14 @@ def generateSummary(text):
         str: The generated summary.
     """
     summarizer = pipeline("text2text-generation", model="t5-base", tokenizer="t5-base")
-    summary = summarizer(text, max_length=100, min_length=30, do_sample=False)[0]['generated_text']
-    return summary
+    summary = summarizer(text, max_length=200, min_length=50, do_sample=False)[0]['generated_text']
+
+    # Extract the first two sentences from the generated summary
+    summary_sentences = summary.split('. ')
+    limited_summary = '. '.join(summary_sentences[:2])
+
+    return limited_summary
+
 
 def determineAction(objective, memory, tools):
     """
@@ -105,7 +111,7 @@ def determineAction(objective, memory, tools):
     """
 
     answer = getAnswer(formattedPrompt)
-    text = searchNewsAPI(answer)
+    text = searchNewsAPI(objective)
     if text:
         summary = generateSummary(text)
     else:
@@ -125,5 +131,6 @@ def startAgent():
     tools = ["searchNewsAPI"]
 
     finished, result, memory = determineAction(objective, memory, tools)
+
 
 startAgent()
