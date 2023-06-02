@@ -17,10 +17,10 @@ from newsapi import NewsApiClient
 from transformers import pipeline
 
 # Set up the OpenAI API
-openai.api_key = "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"  # Replace with your OpenAI API key
+openai.api_key = "YOUR OPEN_AI KEY"  # Replace with your OpenAI API key
 
 # Set up the NewsAPI client
-newsapi = NewsApiClient(api_key="638e4e06d3484052a3776faa953e2e3f")  # Replace with your NewsAPI API key
+newsapi = NewsApiClient(api_key="YOUR NEWS_API KEY")  # Replace with your NewsAPI API key
 
 def getAnswer(prompt):
     """
